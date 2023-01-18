@@ -1,6 +1,6 @@
 --@D:\university\year_2\database\as2\CODES/constrain.sql
  
- /*
+ /*completed
 	
 	GROUP 7
 		RITESH JUNG SHAH

@@ -16,27 +16,7 @@ SELECT * FROM login_details ORDER BY event_date ASC;
 COLUMN street FORMAT A30;
 COLUMN city FORMAT A20;
 COLUMN country FORMAT A20;
-
---Query whole table
---INITCAP makes the text appear in Camel Case
-SELECT INITCAP(street) AS street, city, country FROM addresses;
-
---Other queries
-
---Querying addresses where no locations exist or no ambassador live
---Usage of MINUS and UNION
---Help taken from tutorial week 10
-SELECT a.city, a.street, a.country FROM addresses a
-MINUS(
-SELECT s.current_address.city, s.current_address.street, s.current_address.country FROM ambassador s
-UNION
-SELECT ss.permanent_address.city, ss.permanent_address.street, ss.permanent_address.country FROM ambassador ss
-UNION
-SELECT l.address.city, l.address.street, l.address.country FROM locations l);
---As expected, the addresses that exist in the locations are only removed as locations used in ambassador table are object types and unique to 
---data in the addresses table.
-
-
+-------------------------------
 --Querying addresses where locations exist
 --Usage of INTERSECT
 SELECT a.city, a.street, a.country FROM addresses a
@@ -59,75 +39,83 @@ COLUMN permanent_street FORMAT A16 WOR
 COLUMN permanent_city FORMAT A15 WOR
 COLUMN permanent_country FORMAT A18 WOR
 
---Query with current address
+--Query with  address
 SELECT ambassador_id, firstname, lastname, gender, c.contact_number, c.number_type, s.current_address.street AS current_street, s.current_address.city AS current_city, s.current_address.country AS current_country
-FROM ambassador s, TABLE (s.contact) c ORDER BY ambassador_id;
-
---Query with permanent address
-SELECT ambassador_id, firstname, lastname, gender, c.contact_number, c.number_type, s.permanent_address.street AS permanent_street, s.permanent_address.city AS permanent_city, s.permanent_address.country AS permanent_country
-FROM ambassador s, TABLE (s.contact) c ORDER BY ambassador_id;
-
-
---Other queries
-
---Ambassador with leader names
---Usage of INNER JOIN
-SELECT s.ambassador_id, s.firstname, s.lastname, l.ambassador_id AS leader_id, l.firstname AS leader_firstname, l.lastname AS leader_lastname
-FROM ambassador s JOIN ambassador l ON
-s.leader = l.ambassador_id
-ORDER BY s.ambassador_id;
-
-
---Ambassador having higher salary than leaders using subquery
-SELECT s.firstname, s.lastname, s.salary
-FROM ambassador s
-WHERE EXISTS(
-	SELECT l.ambassador_id FROM ambassador l
-	WHERE s.leader = l.ambassador_id
-	AND s.salary>l.salary);
+FROM ambassadors s, TABLE (s.contact) c ORDER BY ambassador_id;
 
 --Average salary of ambassador
-SELECT AVG(salary) FROM ambassador;
+SELECT AVG(salary) FROM ambassadors;
 
 --Highest salary of ambassador
-SELECT MAX(salary) FROM ambassador;
+SELECT MAX(salary) FROM ambassadors;
 
 --ambassador having highest salary
 SELECT s.ambassador_id, s.firstname, s.lastname, s.salary
-FROM ambassador s
+FROM ambassadors s
 WHERE s.salary IN(
-	SELECT MAX(salary) FROM ambassador);
+	SELECT MAX(salary) FROM ambassadors);
 
 --Lowest salary of ambassador
-SELECT MIN(salary) FROM ambassador;
+SELECT MIN(salary) FROM ambassadors;
 
 --ambassador having lowest salary
 SELECT s.ambassador_id, s.firstname, s.lastname, s.salary
-FROM ambassador s
+FROM ambassadors s
 WHERE s.salary IN(
-	SELECT MIN(salary) FROM ambassador);
+	SELECT MIN(salary) FROM ambassadors);
 
 --Rest of the ambassador (ambassador not having lowest salary)
 SELECT s.ambassador_id, s.firstname, s.lastname, s.salary
-FROM ambassador s
+FROM ambassadors s
 WHERE s.salary NOT IN(
-	SELECT MIN(salary) FROM ambassador);
+	SELECT MIN(salary) FROM ambassadors);
 
 --Total budget of company allocated in ambassador salary
-SELECT SUM(salary) FROM ambassador;
+SELECT SUM(salary) FROM ambassadors;
 
 --Number of ambassador
-SELECT COUNT(ambassador_id) FROM ambassador;
+SELECT COUNT(ambassador_id) FROM ambassadors;
 
---ambassador having leaders
-SELECT s.ambassador_id, s.firstname, s.lastname
-FROM ambassador s
-WHERE s.leader != s.ambassador_id;
+-------------------------------
+--Most Expensive Location
+SELECT l.location_id, l.address.street AS street, l.address.city  AS city, l.address.country  AS country, l.capacity, l.price
+FROM locations l
+WHERE l.price IN(
+	SELECT MAX(price) FROM locations);
 
---ambassador having no leaders
-SELECT s.ambassador_id, s.firstname, s.lastname
-FROM ambassador s
-WHERE s.leader = s.ambassador_id;
+--Cheapest Location
+SELECT l.location_id, l.address.street AS street, l.address.city  AS city, l.address.country  AS country, l.capacity, l.price
+FROM locations l
+WHERE l.price IN(
+	SELECT MIN(price) FROM locations);
+
+--Location with highest capacity
+SELECT l.location_id, l.address.street AS street, l.address.city  AS city, l.address.country  AS country, l.capacity, l.price
+FROM locations l
+WHERE l.capacity IN(
+	SELECT MAX(capacity) FROM locations);
+
+--Location with lowest capacity
+SELECT l.location_id, l.address.street AS street, l.address.city  AS city, l.address.country  AS country, l.capacity, l.price
+FROM locations l
+WHERE l.capacity IN(
+	SELECT MIN(capacity) FROM locations);
+-------------------------------
+
+
+3333
+
+
+
+
+--crap////
+//*/*
+
+
+
+
+
+
 
 --Query using procedure
 
@@ -300,22 +288,22 @@ COLUMN ambassador FORMAT A20 WOR
 COLUMN location FORMAT A40 WOR
 
 --Query
-SELECT fs.experience_ambassador_id, CONCAT(CONCAT(s.firstname, ' '),  s.lastname) AS ambassador, fn.name AS experience_nature, CONCAT(CONCAT(CONCAT(CONCAT(l.address.street, ', '), l.address.city), ', '), l.address.country) AS location
-FROM experience_ambassador fs JOIN experiences f
+SELECT fs.experience_ambassador_id, CONCAT(CONCAT(s.firstname, ' '),  s.lastname) AS ambassador, fn.name AS experience_nature, CONCAT(CONCAT(CONCAT(CONCAT(l.address.street, ', '), l.address.city), ', '), l.address.country) AS locations
+FROM experience_ambassadors fs JOIN experiences f
 ON fs.festival_nature_id = f.experience_nature_id
 JOIN experience_natures fn
 ON fn.experience_nature_id = f.experience_nature_id
 JOIN locations l
 ON f.location_id = l.location_id
-JOIN ambassador s
+JOIN ambassadors s
 ON s.ambassador_id = fs.ambassador_id
 ORDER BY fs.experience_ambassador_id;
 
 
 --Query using left join with ambassador
-SELECT s.ambassador_id, CONCAT(CONCAT(s.firstname, ' '),  s.lastname) AS ambassador, fs.ambassador_id AS FS_ambassador_id, fs.experience_ambassador_id, fs.experience_nature_id, fs.location_id 
-FROM ambassador s 
-LEFT JOIN experience_ambassador fs
+SELECT s.ambassador_id, CONCAT(CONCAT(s.firstname, ' '),  s.lastname) AS ambassadors, fs.ambassador_id AS FS_ambassador_id, fs.experience_ambassador_id, fs.experience_nature_id, fs.location_id 
+FROM ambassadors s 
+LEFT JOIN experience_ambassadors fs
 ON fs.ambassador_id = s.ambassador_id;
 
 

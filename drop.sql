@@ -1,6 +1,6 @@
 --@D:\university\year_2\database\as2\CODES/drop.sql
  
- /*
+ /*completed
 	
 	GROUP 7
 		RITESH JUNG SHAH
@@ -119,16 +119,9 @@ SELECT constraint_name FROM user_constraints
 WHERE constraint_name NOT LIKE 'SYS%';
 
 -- PROCEDURE DROPS 
-
+----ROUGH WORK
 DROP PROCEDURE proc_insert_addresses;
-DROP PROCEDURE proc_insert_ambassadors;
-DROP PROCEDURE proc_insert_experience_natures;
-DROP PROCEDURE proc_insert_locations;
-DROP PROCEDURE proc_insert_experiences;
-DROP PROCEDURE proc_insert_e_ambassadors;
-DROP PROCEDURE proc_insert_experiences;
+
 
 -- FUNCTION DROPS
 DROP FUNCTION func_count_ambassadors;
-DROP FUNCTION func_count_ambassadors_salary;
-DROP FUNCTION func_count_experiences;

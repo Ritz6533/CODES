@@ -1,6 +1,6 @@
---@D:\university\year_2\database\as2\CODES/insertdata.sql
- 
- /*
+--@D:\university\year_2\database\as2\CODES/insert.sql
+
+ /*completed
 	
 	GROUP 7
 		RITESH JUNG SHAH
@@ -22,20 +22,17 @@ COLUMN country FORMAT A20;
 --Verify empty table
 SELECT street, city, country FROM addresses;
 
---Insert without procedure
-INSERT INTO addresses(street, city, country)
-VALUES ('101 BEECH AVENUE', 'NORTHAMPTON', 'UK');
+INSERT INTO addresses(street, city, country) VALUES ('101 BEECH AVENUE', 'NORTHAMPTON', 'UK');
+INSERT INTO addresses(street, city, country) VALUES	('566 Creeds Avenue', 'Texas', 'USA');
+INSERT INTO addresses(street, city, country) VALUES	('123 Sun WAY', 'SAN FERNANDO', 'USA');
+INSERT INTO addresses(street, city, country) VALUES	('852 UNI DRIVE', 'SAN DIEGO', 'USA');
+INSERT INTO addresses(street, city, country) VALUES	('456 COVO STREET', 'LUTON', 'UK');
+INSERT INTO addresses(street, city, country) VALUES	('056 TIME SQUARE', 'NEW YORK', 'USA');
+INSERT INTO addresses(street, city, country) VALUES	('111 HUMBERG STREET', 'COLORADO', 'UK');
+INSERT INTO addresses(street, city, country) VALUES	('963 SANINT AVE', 'SAN DIEGO', 'USA');
+INSERT INTO addresses(street, city, country) VALUES	('152 KETTERING ROAD', 'NORTHAMPTON', 'UK');
+INSERT INTO addresses(street, city, country) VALUES	('33 CASTLE ASBY', 'NORTHAMPTON', 'UK');
 
---Insert using procedure
-EXEC proc_insert_addresses('566 Creeds Avenue', 'Texas', 'USA');
-EXEC proc_insert_addresses('123 Sun WAY', 'SAN FERNANDO', 'USA');
-EXEC proc_insert_addresses('852 UNI DRIVE', 'SAN DIEGO', 'USA');
-EXEC proc_insert_addresses('456 COVO STREET', 'LUTON', 'UK');
-EXEC proc_insert_addresses('056 TIME SQUARE', 'NEW YORK', 'USA');
-EXEC proc_insert_addresses('111 HUMBERG STREET', 'COLORADO', 'UK');
-EXEC proc_insert_addresses('963 SANINT AVE', 'SAN DIEGO', 'USA');
-EXEC proc_insert_addresses('152 KETTERING ROAD', 'NORTHAMPTON', 'UK');
-EXEC proc_insert_addresses('33 CASTLE ASBY', 'NORTHAMPTON', 'UK');
 
 --Verify insert
 SELECT street, city, country FROM addresses; 
@@ -46,20 +43,27 @@ SELECT street, city, country FROM addresses;
 --Verify empty table
 SELECT ambassador_id,firstname,lastname,gender,leader,salary,current_address FROM ambassadors;
 
---Insert without procedure
+--Insert
 INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
 VALUES (seq_ambassador_id.NEXTVAL, 'RITESH', 'SHAH', 'M', '64SH5AHRITESHJUNG6533@GMAIL.COM', seq_ambassador_id.CURRVAL, 979.66 ,contact_detail_varray_type(contact_detail_type('0743456456', 'MOBILE') ,contact_detail_type('07543456456', 'HOME')) ,address_type('101 BEECH AVENUE', 'NORTHAMPTON', 'UK'));
 
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'HAPPY', 'APPLE', 'F', 'HAPPYAPPLE@GMAIL.COM', seq_ambassador_id.CURRVAL, 10000.50 ,contact_detail_varray_type(contact_detail_type('7412365895', 'MOBILE') ,contact_detail_type('8520369874', 'HOME')) ,address_type('566 Creeds Avenue', 'Texas', 'USA'));
 
---Insert with procedure
-EXEC proc_insert_ambassadors('HAPPY', 'APPLE', 'F', 'HAPPYAPPLE@GMAIL.COM', 10000.50 ,'7412365895', 'MOBILE' ,'8520369874', 'HOME','566 Creeds Avenue', 'Texas', 'USA');
-EXEC proc_insert_ambassadors('SAD', 'MANGO', 'M', 'SADMANGO@GMAIL.COM', 15000.00 ,'7894561230', 'MOBILE' ,'9632587412', 'HOME','123 Sun WAY', 'SAN FERNANDO', 'USA');
-EXEC proc_insert_ambassadors('CALM', 'BANANA', 'M', 'CALMBANANA@GMAIL.COM', 20000.50 ,'7532148920', 'MOBILE' ,'9856325015', 'HOME','852 UNI DRIVE', 'SAN DIEGO', 'USA');
-EXEC proc_insert_ambassadors('RUDE', 'GUAVA', 'F', 'RUDEGUAVA@GMAIL.COM', 20099.99 ,'7391468202', 'MOBILE' ,'9856230145', 'HOME','111 HUMBERG STREET', 'COLORADO', 'UK');
-EXEC proc_insert_ambassadors('LOVELY', 'BERRY', 'M', 'LOVELYBERRY@GMAIL.COM', 35000.00 ,'7897897890', 'MOBILE' ,'8894521035', 'HOME','152 KETTERING ROAD', 'NORTHAMPTON', 'UK');
-EXEC proc_insert_ambassadors('BORED', 'MANGO', 'M', 'BOREDMANGO@GMAIL.COM', 40000.00 ,'7414118520', 'MOBILE' ,'8426795130', 'HOME','33 CASTLE ASBY', 'NORTHAMPTON', 'UK');
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'SAD', 'MANGO', 'M', 'SADMANGO@GMAIL.COM', seq_ambassador_id.CURRVAL, 15000.00 ,contact_detail_varray_type(contact_detail_type('7894561230', 'MOBILE') ,contact_detail_type('9632587412', 'HOME')) ,address_type('123 Sun WAY', 'SAN FERNANDO', 'USA'));
 
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'CALM', 'BANANA', 'M', 'CALMBANANA@GMAIL.COM', seq_ambassador_id.CURRVAL, 20000.50 ,contact_detail_varray_type(contact_detail_type('7532148920', 'MOBILE') ,contact_detail_type('9856325015', 'HOME')) ,address_type('852 UNI DRIVE', 'SAN DIEGO', 'USA'));
 
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'RUDE', 'GUAVA', 'F', 'RUDEGUAVA@GMAIL.COM', seq_ambassador_id.CURRVAL, 20099.99 ,contact_detail_varray_type(contact_detail_type('7391468202', 'MOBILE') ,contact_detail_type('9856230145', 'HOME')) ,address_type('111 HUMBERG STREET', 'COLORADO', 'UK'));
+
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'LOVELY', 'BERRY', 'M', 'LOVELYBERRY@GMAIL.COM', seq_ambassador_id.CURRVAL, 35000.99 ,contact_detail_varray_type(contact_detail_type('7897897890', 'MOBILE') ,contact_detail_type('9894521035', 'HOME')) ,address_type('152 KETTERING ROAD', 'NORTHAMPTON', 'UK'));
+
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'BORED', 'MANGO', 'M', 'BOREDMANGO@GMAIL.COM', seq_ambassador_id.CURRVAL, 40000.50 ,contact_detail_varray_type(contact_detail_type('7414118520', 'MOBILE') ,contact_detail_type('8426795130', 'HOME')) ,address_type('33 CASTLE ASBY', 'NORTHAMPTON', 'UK'));
 
 --Verify insert
 SELECT firstname, lastname FROM ambassadors;
@@ -71,15 +75,21 @@ SELECT firstname, lastname FROM ambassadors;
 --Verify empty table
 SELECT * FROM experience_natures;
 
---Insert without procedure
+--Insert
 INSERT INTO experience_natures (experience_nature_id,name,experience_type)
 VALUES (seq_experience_nature_id.NEXTVAL, 'HIKING', 'PHYSICAL AND OUTDOOR');
 
---Insert using procedure
-EXEC proc_insert_experience_natures('CONCERT', 'MUSIC AND 2021 RAVE');
-EXEC proc_insert_experience_natures('BINGO', 'OLD PEOPLES GAME');
-EXEC proc_insert_experience_natures('DANCE AND DRINK', 'YOUTH RNB DANCE');
-EXEC proc_insert_experience_natures('KIDS FESTIVAL', 'KIDS AND FAMILY OUTDOORS');
+INSERT INTO experience_natures (experience_nature_id,name,experience_type)
+VALUES (seq_experience_nature_id.NEXTVAL, 'CONCERT', 'MUSIC AND 2021 RAVE');
+
+INSERT INTO experience_natures (experience_nature_id,name,experience_type)
+VALUES (seq_experience_nature_id.NEXTVAL, 'BINGO', 'OLD PEOPLES GAME');
+
+INSERT INTO experience_natures (experience_nature_id,name,experience_type)
+VALUES (seq_experience_nature_id.NEXTVAL, 'DANCE AND DRINK', 'YOUTH RNB DANCE');
+
+INSERT INTO experience_natures (experience_nature_id,name,experience_type)
+VALUES (seq_experience_nature_id.NEXTVAL, 'KIDS FESTIVAL', 'KIDS AND FAMILY OUTDOORS');
 
 
 --Verify insert
@@ -94,17 +104,24 @@ SELECT location_id, capacity, price, l.address.street, l.address.city, l.address
 
 --Requires reference of addresses table
 
---Insert without procedure
+--Insert 
 INSERT INTO locations (location_id,capacity,price,address)
 	SELECT seq_location_id.NEXTVAL,1000,999, REF(a)
 	FROM addresses a
 	WHERE a.street = '963 SANINT AVE';
 
---Insert with procedure
-EXEC proc_insert_locations(1200, 20500, '111 HUMBERG STREET');
-EXEC proc_insert_locations(500, 5500, '852 UNI DRIVE');
-EXEC proc_insert_locations(750, 2500, '056 TIME SQUARE');
-EXEC proc_insert_locations(200, 1000, '33 CASTLE ASBY');
+INSERT INTO locations (location_id,capacity,price,address)
+VALUES (seq_location_id.NEXTVAL,1000,999, (SELECT REF(a) FROM addresses a WHERE a.street = '111 HUMBERG STREET'));
+
+
+INSERT INTO locations (location_id,capacity,price,address)
+VALUES (seq_location_id.NEXTVAL,500, 5500, (SELECT REF(a) FROM addresses a WHERE a.street = '056 TIME SQUARE'));
+
+INSERT INTO locations (location_id,capacity,price,address)
+VALUES (seq_location_id.NEXTVAL,750, 2500, (SELECT REF(a) FROM addresses a WHERE a.street = '056 TIME SQUARE'));
+
+INSERT INTO locations (location_id,capacity,price,address)
+VALUES (seq_location_id.NEXTVAL,200, 1000, (SELECT REF(a) FROM addresses a WHERE a.street = '33 CASTLE ASBY'));
 
 --Verify insert
 SELECT location_id, capacity, price, l.address.street AS street, l.address.city  AS city, l.address.country  AS country FROM locations l ORDER BY location_id;
@@ -116,17 +133,22 @@ SELECT location_id, capacity, price, l.address.street AS street, l.address.city 
 --Verify empty table
 SELECT experience_nature_id, experience_name, experience_price FROM experiences;
 
---Insert without procedure
+--Insert 
 INSERT INTO experiences(experience_nature_id,location_id,experience_name,experience_type,experience_price)
 VALUES (1, 1, 'HIKING','CARDIO', 5000 );
 
+INSERT INTO experiences(experience_nature_id,location_id,experience_name,experience_type,experience_price)
+VALUES (2, 1, 'BINGO','CLASSIC', 50 );
 
---Insert with procedure
---Format of Arguments: Festival Nature Id, Location Id, Festival name, Performance1 - name, artist, genre, Performance 2- name, artist, genre
-EXEC proc_insert_experiences(2, 1, 'BINGO','CLASSIC', 50 );
-EXEC proc_insert_experiences(3, 2, 'DANCE','RAVE', 50 );
-EXEC proc_insert_experiences(4, 4, 'BUNGEE','OUTDOOR', 200 );
-EXEC proc_insert_experiences(5, 3, 'SKY DIVING','OUTDOOR', 500 );
+INSERT INTO experiences(experience_nature_id,location_id,experience_name,experience_type,experience_price)
+VALUES (3, 2, 'DANCE','RAVE', 50 );
+
+INSERT INTO experiences(experience_nature_id,location_id,experience_name,experience_type,experience_price)
+VALUES (4, 4, 'BUNGEE','OUTDOOR', 200 );
+
+INSERT INTO experiences(experience_nature_id,location_id,experience_name,experience_type,experience_price)
+VALUES (5, 3, 'SKY DIVING','OUTDOOR', 500 );
+
 
 
 --Verify insert
@@ -139,16 +161,25 @@ SELECT experience_nature_id, experience_name, experience_price FROM experiences;
 --Verify empty table
 SELECT experience_ambassador_id, ambassador_id, experience_nature_id, location_id FROM experience_ambassadors;
 
---Insert without procedure
+--Insert 
 INSERT INTO experience_ambassadors (experience_ambassador_id,ambassador_id,experience_nature_id,location_id)
 VALUES (seq_experience_ambassador_id.NEXTVAL, 4, 1, 1);
 
---Insert with procedure
-EXEC proc_insert_e_ambassadors(3, 1, 1);
-EXEC proc_insert_e_ambassadors(2, 2, 1);
-EXEC proc_insert_e_ambassadors(1, 3, 2);
-EXEC proc_insert_e_ambassadors(4, 4, 4);
-EXEC proc_insert_e_ambassadors(5, 5, 3);
+INSERT INTO experience_ambassadors (experience_ambassador_id,ambassador_id,experience_nature_id,location_id)
+VALUES (seq_experience_ambassador_id.NEXTVAL, 3, 1, 1);
+
+INSERT INTO experience_ambassadors (experience_ambassador_id,ambassador_id,experience_nature_id,location_id)
+VALUES (seq_experience_ambassador_id.NEXTVAL, 2, 2, 1);
+
+INSERT INTO experience_ambassadors (experience_ambassador_id,ambassador_id,experience_nature_id,location_id)
+VALUES (seq_experience_ambassador_id.NEXTVAL, 1, 3, 2);
+
+INSERT INTO experience_ambassadors (experience_ambassador_id,ambassador_id,experience_nature_id,location_id)
+VALUES (seq_experience_ambassador_id.NEXTVAL, 4, 4, 4);
+INSERT INTO experience_ambassadors (experience_ambassador_id,ambassador_id,experience_nature_id,location_id)
+VALUES (seq_experience_ambassador_id.NEXTVAL, 5, 5, 3);
+
+
 
 --Verify insert
 SELECT experience_ambassador_id, ambassador_id, experience_nature_id, location_id FROM experience_ambassadors;

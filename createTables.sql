@@ -1,6 +1,14 @@
 -- CSY2038_181@student/CSY2038_181
 --@D:\university\year_2\database\as2\CODES/createtables.sql
+ /*completed
+	
+	GROUP 7
+		RITESH JUNG SHAH
+		RUPAK DAHAL
+		DIPESH DHUNGANA
+		RAHUL AHMED SEZAN 
 
+*/
 --address_type
 CREATE OR REPLACE TYPE address_type AS OBJECT(
 	street VARCHAR2(25),

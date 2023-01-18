@@ -15,3 +15,6 @@ DBMS_OUTPUT.PUT_LINE(vc_username);
 END;
 /
 --org--
+
+
+update_ambassador_salary
