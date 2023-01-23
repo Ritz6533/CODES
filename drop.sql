@@ -1,14 +1,11 @@
 --@D:\university\year_2\database\as2\CODES/drop.sql
  
- /*completed
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
 	
-	GROUP 7
-		RITESH JUNG SHAH
-		RUPAK DAHAL
-		DIPESH DHUNGANA
-		RAHUL AHMED SEZAN 
-
-*/
 --Display dbms output
 SET SERVEROUTPUT ON
 
@@ -120,8 +117,9 @@ WHERE constraint_name NOT LIKE 'SYS%';
 
 -- PROCEDURE DROPS 
 ----ROUGH WORK
-DROP PROCEDURE proc_insert_addresses;
+--DROP PROCEDURE proc_insert_addresses;
 
 
 -- FUNCTION DROPS
-DROP FUNCTION func_count_ambassadors;
+--DROP FUNCTION func_count_ambassadors;
+PURGE RECYCLEBIN;

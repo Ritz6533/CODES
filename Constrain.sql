@@ -1,14 +1,11 @@
 --@D:\university\year_2\database\as2\CODES/constrain.sql
- 
- /*completed
-	
-	GROUP 7
-		RITESH JUNG SHAH
-		RUPAK DAHAL
-		DIPESH DHUNGANA
-		RAHUL AHMED SEZAN 
 
-*/ 
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
+
 
 --Display dbms output
 SET SERVEROUTPUT ON

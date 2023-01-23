@@ -1,14 +1,11 @@
---@D:\university\year_2\database\as2\CODES/insert.sql
+--@D:\university\year_2\database\as2\CODES/insertData.sql
 
- /*completed
-	
-	GROUP 7
-		RITESH JUNG SHAH
-		RUPAK DAHAL
-		DIPESH DHUNGANA
-		RAHUL AHMED SEZAN 
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
 
-*/
 --Display dbms output
 SET SERVEROUTPUT ON
 
@@ -66,7 +63,7 @@ INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,sal
 VALUES (seq_ambassador_id.NEXTVAL, 'BORED', 'MANGO', 'M', 'BOREDMANGO@GMAIL.COM', seq_ambassador_id.CURRVAL, 40000.50 ,contact_detail_varray_type(contact_detail_type('7414118520', 'MOBILE') ,contact_detail_type('8426795130', 'HOME')) ,address_type('33 CASTLE ASBY', 'NORTHAMPTON', 'UK'));
 
 --Verify insert
-SELECT firstname, lastname FROM ambassadors;
+SELECT ambassador_id,firstname, lastname FROM ambassadors;
 --Result   : The inserted data appears in the table
 
 --EXPERIENCE_NATURE TABLE
@@ -106,12 +103,12 @@ SELECT location_id, capacity, price, l.address.street, l.address.city, l.address
 
 --Insert 
 INSERT INTO locations (location_id,capacity,price,address)
-	SELECT seq_location_id.NEXTVAL,1000,999, REF(a)
+	SELECT seq_location_id.NEXTVAL,100,999, REF(a)
 	FROM addresses a
 	WHERE a.street = '963 SANINT AVE';
 
 INSERT INTO locations (location_id,capacity,price,address)
-VALUES (seq_location_id.NEXTVAL,1000,999, (SELECT REF(a) FROM addresses a WHERE a.street = '111 HUMBERG STREET'));
+VALUES (seq_location_id.NEXTVAL,1000,9999, (SELECT REF(a) FROM addresses a WHERE a.street = '111 HUMBERG STREET'));
 
 
 INSERT INTO locations (location_id,capacity,price,address)
