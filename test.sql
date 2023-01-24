@@ -18,3 +18,6 @@ END;
 
 
 update_ambassador_salary
+
+
+-------create a test environment

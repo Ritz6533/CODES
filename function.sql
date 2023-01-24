@@ -1,8 +1,4 @@
 /*
-
-	FUNCTION FILE
-		-Contains create commands for functions 
-		-These functions are used by the procedures or triggers
 	
 	GROUP 7
 		RITESH JUNG SHAH
@@ -11,6 +7,28 @@
 		RAHUL AHMED SEZAN 
 
 */
+
+
+SET SERVEROUTPUT ON;
+
+--PL/SQL Anonymous Block to show the initials of the ambassadors first name
+DECLARE
+  vn_counter NUMBER := 1;
+  vc_firstname VARCHAR2(20);
+  vn_length NUMBER;
+BEGIN
+  SELECT firstname, LENGTH(firstname) INTO vc_firstname, vn_length 
+  FROM ambassadors WHERE ambassador_id = 1;
+  LOOP
+    DBMS_OUTPUT.PUT_LINE(SUBSTR(vc_firstname, vn_counter, 1));
+    vn_counter := vn_counter + 1;
+    EXIT WHEN vn_counter > vn_length;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('First Name is - '||vc_firstname);
+END;
+/
+SHOW ERRORS
+
 
 
 
@@ -57,23 +75,6 @@ END func_count_experiences;
 SHOW ERRORS;
  
 SELECT func_count_experiences FROM DUAL;
+--
 
-CREATE OR REPLACE FUNCTION func_discounted_price
-(in_price1 locations.price%TYPE, in_price2 locations.price%TYPE)
-RETURN NUMBER IS
-	out_discounted_price NUMBER(10,2);
-BEGIN
-	out_discounted_price := (in_price1 + in_price2)/1.25;
-	
-	RETURN out_discounted_price;
-END func_discounted_price;
-/
-SHOW ERRORS;
-
-DECLARE
-    discounted_price NUMBER(10,2);
-BEGIN
-    discounted_price := func_discounted_price(100, 50);
-    DBMS_OUTPUT.PUT_LINE('Discounted price: ' || discounted_price);
-END;
-/
+----how to test function with the use of procedure

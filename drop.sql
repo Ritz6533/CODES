@@ -12,9 +12,6 @@ SET SERVEROUTPUT ON
 --Drop check
 
 ALTER TABLE ambassadors
-DROP CONSTRAINT ck_ambassador_gender;
-
-ALTER TABLE ambassadors
 DROP CONSTRAINT ck_ambassador_firstname;
 
 ALTER TABLE ambassadors
@@ -88,10 +85,27 @@ DROP SEQUENCE seq_location_id;
 DROP SEQUENCE seq_experience_ambassador_id;
 
 
+-- PROCEDURE DROPS 
+
+DROP PROCEDURE proc_ambassador_salary;
+DROP PROCEDURE proc_username;
+DROP PROCEDURE proc_discounted_price;
+DROP PROCEDURE proc_delete_ambassador;
+DROP PROCEDURE PROC_d_ambassador_salary;
+DROP PROCEDURE PROC_a_b;
 
 
+-- TRIGGER DROPS
 
-PURGE RECYCLEBIN;
+DROP TRIGGER trig_check_gender;
+DROP TRIGGER trig_display_a;
+
+-- FUNCTION DROPS
+DROP FUNCTION func_count_ambassadors_salary;
+DROP FUNCTION func_count_ambassadors;
+DROP FUNCTION func_count_experiences;
+
+
 
 --------------------------------------------VIEW-------------------------------------------------
 
@@ -115,16 +129,4 @@ COLUMN constraint_name FORMAT A30;
 SELECT constraint_name FROM user_constraints
 WHERE constraint_name NOT LIKE 'SYS%';
 
--- PROCEDURE DROPS 
-----ROUGH WORK
-DROP PROCEDURE proc_username;
-
-
--- FUNCTION DROPS
---DROP FUNCTION func_count_ambassadors;
-
-COLUMN object_name FORMAT A30;
-COLUMN object_type FORMAT A12;
 PURGE RECYCLEBIN;
-SELECT object_name, object_type FROM user_objects;
-

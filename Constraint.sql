@@ -76,11 +76,6 @@ UNIQUE (email);
 
 
 --check
-
-ALTER TABLE ambassadors
-ADD CONSTRAINT ck_ambassador_gender
-CHECK (gender IN('M', 'F'));
-
 ALTER TABLE ambassadors
 ADD CONSTRAINT ck_ambassador_firstname
 CHECK (firstname= UPPER(firstname));

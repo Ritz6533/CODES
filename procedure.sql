@@ -1,100 +1,31 @@
+SET SERVEROUTPUT ON;
 
 --procedure to update an existing ambassador's salary
-CREATE OR REPLACE PROCEDURE update_ambassador_salary(p_ambassador_id IN NUMBER, p_new_salary IN NUMBER)
+CREATE OR REPLACE PROCEDURE proc_ambassador_salary(in_ambassador_id IN NUMBER, in_percentage IN NUMBER)
 AS
+   vn_old_salary NUMBER;
 BEGIN
+   SELECT salary INTO vn_old_salary FROM ambassadors WHERE ambassador_id = in_ambassador_id;
+   
    UPDATE ambassadors
-   SET salary = p_new_salary
-   WHERE ambassador_id = p_ambassador_id;
+   SET salary = salary * (1 + (in_percentage / 100))
+   WHERE ambassador_id = in_ambassador_id;
+   
    COMMIT;
-END;
-/
-
-----------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------Procedures for querying data----------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------
-
-
---Procedures using functions
-
-----------------------------------------------------------------------------------------------------------------------------
-
--- This procedure displays the total number of ambassadors
--- It uses the function func_count_ambassadors to retrieve total number of staff
-CREATE OR REPLACE PROCEDURE proc_count_ambassadors AS
-	vn_count NUMBER(5):= func_count_ambassadors;
-BEGIN
-	IF vn_count>0 THEN
-		DBMS_OUTPUT.PUT_LINE('There are '|| vn_count || ' ambassadors in the system.');
-	ELSE 
-		DBMS_OUTPUT.PUT_LINE('There is no staff available.');
-	END IF;
-END proc_count_ambassadors;
+   
+   DBMS_OUTPUT.PUT_LINE('Previous Salary: '|| vn_old_salary);
+   DBMS_OUTPUT.PUT_LINE('New Salary: '|| (vn_old_salary * (1 + (in_percentage / 100))));
+   DBMS_OUTPUT.PUT_LINE('Salary has been increased by '|| in_percentage ||'%'); 
+END proc_ambassador_salary;
 /
 SHOW ERRORS
 
-----------------------------------------------------------------------------------------------------------------------------
-
--- This procedure displays the total number of staff with salary higher than provided as argument
--- It uses the function func_count_staff_salary to retrieve the number of staff
-CREATE OR REPLACE PROCEDURE proc_count_ambassadors_salary(in_salary NUMBER) AS
-	vn_count NUMBER(5):= func_count_ambassadors_salary(in_salary);
-BEGIN
-	IF vn_count>1 THEN
-		DBMS_OUTPUT.PUT_LINE('There are '|| vn_count || ' staff in the system with salary more than '|| in_salary);
-	ELSIF vn_count = 1 THEN 
-		DBMS_OUTPUT.PUT_LINE('There is '|| vn_count || ' staff in the system with salary more than '|| in_salary);
-	ELSE	
-		DBMS_OUTPUT.PUT_LINE('There is no ambassadors with salary more than '|| in_salary);
-	END IF;
-END proc_count_ambassadors_salary;
-/
-SHOW ERRORS
-
-----------------------------------------------------------------------------------------------------------------------------
-
--- This procedure displays the total number of experiences
--- It uses the function func_count_experiences to retrieve total number of experiences
-CREATE OR REPLACE PROCEDURE proc_count_experiences AS
-	vn_count NUMBER(5):= func_count_experiences;
-BEGIN
-	IF vn_count>0 THEN
-		DBMS_OUTPUT.PUT_LINE('There are '|| vn_count || ' experiences in the system.');
-	ELSE 
-		DBMS_OUTPUT.PUT_LINE('There is no festival available.');
-	END IF;
-END proc_count_experiences;
-/
-SHOW ERRORS
-
-
-----------------------------------------------------------------------------------------------------------------------------
-
--- This procedure displays the highest price among the locations
-CREATE OR REPLACE PROCEDURE proc_exp_location AS
-BEGIN
-	DBMS_OUTPUT.PUT_LINE('The most expensive location costs '|| func_exp_location);
-END proc_exp_location;
-/
-SHOW ERRORS
-
-
-----------------------------------------------------------------------------------------------------------------------------
-
--- This procedure displays the cheapest price among the locations
-CREATE OR REPLACE PROCEDURE proc_chp_location AS
-BEGIN
-	DBMS_OUTPUT.PUT_LINE('The cheapest location costs '|| func_chp_location);
-END proc_chp_location;
-/
-SHOW ERRORS
+EXEC proc_ambassador_salary(1, 15);
 
 
 
-
-CREATE OR REPLACE PROCEDURE proc_username IS 
+--create a username from firstname and last name combination
+CREATE OR REPLACE PROCEDURE proc_username (in_ambassador_id IN NUMBER) IS 
 vc_username VARCHAR2(20);
 vc_firstname ambassadors.firstname%TYPE;
 vc_lastname ambassadors.lastname%TYPE;
@@ -103,10 +34,50 @@ BEGIN
 SELECT firstname, lastname
 INTO vc_firstname,vc_lastname
 FROM ambassadors
-WHERE gender = 'M';
+WHERE ambassador_id = in_ambassador_id;
 
 vc_username:=SUBSTR(vc_firstname,1,2) || SUBSTR(vc_lastname,1,5);
 DBMS_OUTPUT.PUT_LINE(vc_username); 
 
-END;
+END proc_username;
 /
+
+
+EXEC proc_username(2);
+EXEC proc_username(3);
+
+--Show the discounted price for the location.
+CREATE OR REPLACE PROCEDURE proc_discounted_price(in_location_id IN NUMBER) IS
+vn_disc_price NUMBER(10,2);
+vn_price1 locations.price%TYPE;
+
+BEGIN
+SELECT price
+INTO vn_price1
+FROM locations
+WHERE location_id = in_location_id;
+
+vn_disc_price := (vn_price1 )/1.25;
+    DBMS_OUTPUT.PUT_LINE('Orignal price: ' || vn_price1 ||'  Discounted price: ' || vn_disc_price);
+
+END proc_discounted_price;
+/
+SHOW ERRORS
+
+EXEC proc_discounted_price(3);
+EXEC proc_discounted_price(2);
+
+--procedure to delete ambassadors
+
+CREATE OR REPLACE PROCEDURE proc_delete_ambassador (in_ambassador_id IN NUMBER) IS 
+BEGIN
+  DELETE FROM ambassadors
+  WHERE ambassador_id = in_ambassador_id;
+
+  DBMS_OUTPUT.PUT_LINE('Ambassador with ID ' || in_ambassador_id || ' has been deleted.');
+
+END proc_delete_ambassador;
+/
+SHOW ERRORS
+
+EXEC proc_delete_ambassador (6);

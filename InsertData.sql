@@ -62,6 +62,9 @@ VALUES (seq_ambassador_id.NEXTVAL, 'LOVELY', 'BERRY', 'M', 'LOVELYBERRY@GMAIL.CO
 INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
 VALUES (seq_ambassador_id.NEXTVAL, 'BORED', 'MANGO', 'M', 'BOREDMANGO@GMAIL.COM', seq_ambassador_id.CURRVAL, 40000.50 ,contact_detail_varray_type(contact_detail_type('7414118520', 'MOBILE') ,contact_detail_type('8426795130', 'HOME')) ,address_type('33 CASTLE ASBY', 'NORTHAMPTON', 'UK'));
 
+INSERT INTO ambassadors(ambassador_id,firstname,lastname,gender,email,leader,salary,contact,current_address)
+VALUES (seq_ambassador_id.NEXTVAL, 'ZZ', 'W', 'P', '64SHRITESHJUNG6533@GMAIL.COM', seq_ambassador_id.CURRVAL, 97889.66 ,contact_detail_varray_type(contact_detail_type('07434546456', 'MOBsILE') ,contact_detail_type('075434586456', 'HOME')) ,address_type('101 BEECH AVENUE', 'NORTHAMPTON', 'UK'));
+
 --Verify insert
 SELECT ambassador_id,firstname, lastname FROM ambassadors;
 --Result   : The inserted data appears in the table
