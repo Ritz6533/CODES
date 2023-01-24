@@ -117,9 +117,14 @@ WHERE constraint_name NOT LIKE 'SYS%';
 
 -- PROCEDURE DROPS 
 ----ROUGH WORK
---DROP PROCEDURE proc_insert_addresses;
+DROP PROCEDURE proc_username;
 
 
 -- FUNCTION DROPS
 --DROP FUNCTION func_count_ambassadors;
+
+COLUMN object_name FORMAT A30;
+COLUMN object_type FORMAT A12;
 PURGE RECYCLEBIN;
+SELECT object_name, object_type FROM user_objects;
+

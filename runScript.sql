@@ -2,6 +2,7 @@ COLUMN object_name FORMAT A30;
 COLUMN object_type FORMAT A12;
 PURGE RECYCLEBIN;
 SELECT object_name, object_type FROM user_objects;
+SET SERVEROUTPUT ON
 
 -- CSY2038_181@student/CSY2038_181
 @D:\university\year_2\database\as2\CODES/createtables.sql
@@ -15,8 +16,3 @@ SELECT object_name, object_type FROM user_objects;
 @D:\university\year_2\database\as2\CODES/drop.sql
 
 
-
-COLUMN object_name FORMAT A30;
-COLUMN object_type FORMAT A12;
-PURGE RECYCLEBIN;
-SELECT object_name, object_type FROM user_objects;

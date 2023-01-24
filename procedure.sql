@@ -90,3 +90,23 @@ BEGIN
 END proc_chp_location;
 /
 SHOW ERRORS
+
+
+
+
+CREATE OR REPLACE PROCEDURE proc_username IS 
+vc_username VARCHAR2(20);
+vc_firstname ambassadors.firstname%TYPE;
+vc_lastname ambassadors.lastname%TYPE;
+
+BEGIN
+SELECT firstname, lastname
+INTO vc_firstname,vc_lastname
+FROM ambassadors
+WHERE gender = 'M';
+
+vc_username:=SUBSTR(vc_firstname,1,2) || SUBSTR(vc_lastname,1,5);
+DBMS_OUTPUT.PUT_LINE(vc_username); 
+
+END;
+/

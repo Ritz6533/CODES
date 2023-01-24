@@ -106,7 +106,7 @@ INSERT INTO locations (location_id,capacity,price,address)
 	SELECT seq_location_id.NEXTVAL,100,999, REF(a)
 	FROM addresses a
 	WHERE a.street = '963 SANINT AVE';
-
+--Different ways to Insert in location
 INSERT INTO locations (location_id,capacity,price,address)
 VALUES (seq_location_id.NEXTVAL,1000,9999, (SELECT REF(a) FROM addresses a WHERE a.street = '111 HUMBERG STREET'));
 

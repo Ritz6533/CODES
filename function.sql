@@ -58,3 +58,22 @@ SHOW ERRORS;
  
 SELECT func_count_experiences FROM DUAL;
 
+CREATE OR REPLACE FUNCTION func_discounted_price
+(in_price1 locations.price%TYPE, in_price2 locations.price%TYPE)
+RETURN NUMBER IS
+	out_discounted_price NUMBER(10,2);
+BEGIN
+	out_discounted_price := (in_price1 + in_price2)/1.25;
+	
+	RETURN out_discounted_price;
+END func_discounted_price;
+/
+SHOW ERRORS;
+
+DECLARE
+    discounted_price NUMBER(10,2);
+BEGIN
+    discounted_price := func_discounted_price(100, 50);
+    DBMS_OUTPUT.PUT_LINE('Discounted price: ' || discounted_price);
+END;
+/
