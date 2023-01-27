@@ -42,3 +42,12 @@ END;
 /
 
 
+CREATE OR REPLACE TRIGGER update_salary
+BEFORE UPDATE OF salary ON ambassadors 
+FOR EACH ROW
+BEGIN
+  IF :new.salary < :old.salary THEN
+    raise_application_error(-20000, 'Salary cannot be decreased');
+  END IF;
+END;
+/
