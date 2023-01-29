@@ -24,3 +24,19 @@ SET SERVEROUTPUT ON
 @D:\university\year_2\database\as2\CODES/test.sql
 @D:\university\year_2\database\as2\CODES/drop.sql
 
+--View tables
+COLUMN tname FORMAT A30;
+SELECT * FROM TAB;
+
+--View Sequences
+COLUMN sequence_name FORMAT A30;
+SELECT sequence_name FROM user_sequences;
+
+
+--View constraints
+COLUMN constraint_name FORMAT A30;
+SELECT constraint_name FROM user_constraints
+WHERE constraint_name NOT LIKE 'SYS%';
+
+PURGE RECYCLEBIN;
+

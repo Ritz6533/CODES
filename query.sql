@@ -81,7 +81,7 @@ WHERE salary <50000;
 --Using Between to find ambassador firstname (A-H)
 SELECT 	ambassador_id, firstname, lastname, email
 FROM 	ambassadors
-WHERE 	firstname BETWEEN 'A%' AND 'h%';
+WHERE 	firstname BETWEEN 'A%' AND 'H%';
 
 -------------------------------
 --Most Expensive Location
@@ -147,13 +147,13 @@ ON e.location_id  = l.location_id;
 --Using Between to find ambassador firstname (A-H)
 SELECT 	ambassador_id, firstname, lastname, email
 FROM 	ambassadors
-WHERE 	firstname BETWEEN 'A%' AND 'h%';
+WHERE 	lastname BETWEEN 'A%' AND 'H%';
 
 --More queries
 SELECT 	ambassador_id, firstname,gender, salary
 FROM 	ambassadors
-WHERE 	firstname BETWEEN 'A%' AND 'h%'
-AND 	salary BETWEEN 100 AND 10000
+WHERE 	firstname BETWEEN 'A%' AND 'P%'
+AND 	salary BETWEEN 1000 AND 29000
 AND 	gender = 'M';
 
 --locations of different experiences

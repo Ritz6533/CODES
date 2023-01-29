@@ -1,4 +1,4 @@
---@D:\university\year_2\database\as2\CODES/constrain.sql
+--@D:\university\year_2\database\as2\CODES/constraint.sql
 
 	--GROUP 7
 	--	RITESH JUNG SHAH
@@ -68,7 +68,7 @@ FOREIGN KEY (experience_nature_id, location_id)
 REFERENCES experiences(experience_nature_id, location_id);
 
 
---alter adding unique
+--alter adding unique 
 
 ALTER TABLE ambassadors
 ADD CONSTRAINT uc_email

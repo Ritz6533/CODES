@@ -41,7 +41,7 @@ CREATE OR REPLACE TRIGGER trig_show_deleted
 AFTER DELETE ON ambassadors
 FOR EACH ROW
 BEGIN
-  DBMS_OUTPUT.PUT_LINE('The following row has been deleted from the ambassadors table:''Ambassador ID: ' || :old.ambassador_id || 'Name: ' || :old.firstname);
+  DBMS_OUTPUT.PUT_LINE('The following row has been deleted from the ambassadors table:''Ambassador ID: ' || :old.ambassador_id || '   Name: ' || :old.firstname);
 END;
 /
 SHOW ERRORS

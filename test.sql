@@ -39,6 +39,3 @@ SELECT func_fullname(3) FROM DUAL;
 --Test 6
 SELECT func_lastname(2) FROM DUAL;
 SELECT func_lastname(3) FROM DUAL;
-
---Test 7
-SELECT ambassador_id, firstname, salary FROM ambassadors;

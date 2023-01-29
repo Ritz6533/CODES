@@ -1,4 +1,4 @@
---@D:\university\year_2\database\as2\CODES/insertData.sql
+--
 
 	--GROUP 7
 	--	RITESH JUNG SHAH
@@ -182,8 +182,6 @@ VALUES (seq_experience_ambassador_id.NEXTVAL, 5, 5, 3);
 --Verify insert
 SELECT experience_ambassador_id, ambassador_id, experience_nature_id, location_id FROM experience_ambassadors;
 --Result   : The inserted data appears in the table
-
-
 
 
 
