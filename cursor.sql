@@ -1,10 +1,9 @@
-/*
-In this example, a cursor named cur_ambassadors is created to select the firstname, lastname, 
-and salary columns from the ambassadors table. The cursor is then opened, and a loop is 
-used to fetch each row from the cursor one at a time and display the firstname, lastname,
-and salary of each ambassador in the table. Finally, the cursor is closed.
-It is also possible to use "FOR LOOP" instead of "LOOP" to fetch the data from cursor.
-*/
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
+
 SET SERVEROUTPUT ON;
 
 --Use of While loop and cursor to insert value on different table based on while statement.
@@ -50,7 +49,7 @@ BEGIN
             
 
    END LOOP;
-   DBMS_OUTPUT.PUT_LINE('-SALAY IS UPDATED');
+   DBMS_OUTPUT.PUT_LINE('-SALAY IS UPDATED BY 10%');
 END;
 /
 SHOW ERRORS
@@ -94,5 +93,3 @@ END proc_d_ambassador_salary;
 SHOW ERRORS
 EXEC proc_d_ambassador_salary (13500);
 
-
-----need to add 2 more cursior

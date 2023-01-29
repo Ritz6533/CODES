@@ -1,60 +1,44 @@
-/*CREATE OR REPLACE FUNCTION proc_username IS 
-vc_username VARCHAR(25);
-vc_firstname students.student_firstname%TYPE;
-vc_surname students.student_surname%TYPE;
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
 
-BEGIN
-SELECT student_firstname, student_surname
-INTO vc_firstname,vc_surname
-FROM students
-WHERE student_id = 6901;
+--testing PLSQL
 
-vc_username:=SUBSTR(vc_firstname,1,2) || SUBSTR(vc_surname,1,5);
-RAISE NOTICE; 
+--Test 1
+SELECT ambassador_id,firstname,salary  FROM ambassadors WHERE ambassador_id =2;
+SELECT ambassador_id,firstname,salary  FROM ambassadors WHERE ambassador_id =3;
+EXEC proc_ambassador_salary(2, 15);
+EXEC proc_ambassador_salary(3, 10);
+SELECT ambassador_id,firstname,salary  FROM ambassadors WHERE ambassador_id =2;
+SELECT ambassador_id,firstname,salary  FROM ambassadors WHERE ambassador_id =3;
 
-END; */
+--Test 2
+SELECT ambassador_id,firstname,lastname  FROM ambassadors WHERE ambassador_id =2;
+EXEC proc_username(2);
+SELECT ambassador_id,firstname,lastname  FROM ambassadors WHERE ambassador_id =3;
+EXEC proc_username(3);
 
+--Test 3
+SELECT location_id,price,capacity FROM locations WHERE location_id = 4;
+EXEC proc_discounted_price(4);
+SELECT location_id,price,capacity FROM locations WHERE location_id = 1;
+EXEC proc_discounted_price(1);
 
+--Test 4
+SELECT ambassador_id,firstname,salary  FROM ambassadors WHERE ambassador_id =6;
+EXEC proc_delete_ambassador (6);
+SELECT ambassador_id,firstname,salary  FROM ambassadors WHERE ambassador_id =6;
 
+--Test 5
+SELECT ambassador_id,firstname,lastname  FROM ambassadors WHERE ambassador_id =2;
+SELECT func_fullname(2) FROM DUAL;
+SELECT func_fullname(3) FROM DUAL;
 
+--Test 6
+SELECT func_lastname(2) FROM DUAL;
+SELECT func_lastname(3) FROM DUAL;
 
-CREATE OR REPLACE FUNCTION proc_username()
-RETURNS VARCHAR(25) AS $$
-DECLARE 
-  vc_username VARCHAR(25);
-  vc_firstname VARCHAR(255);
-  vc_lastname VARCHAR(255);
-BEGIN
-  SELECT ambassador_firstname, ambassador_surname
-  INTO vc_firstname,vc_lastname
-  FROM ambassadors
-  WHERE ambassador_id = 6901;
-  vc_username:=substring(vc_firstname,1,2) || substring(vc_lastname,1,5);
-  RAISE NOTICE 'vc_username: %', vc_username;
-  RETURN vc_username;
-END;
-$$ LANGUAGE plpgsql;
-
---org--
-
-
---update_ambassador_salary
-
-CREATE OR REPLACE FUNCTION update_ambassador_salary(INTEGER, NUMERIC)
-RETURNS VOID AS $$
-BEGIN
-    UPDATE ambassadors
-    SET salary = $2
-    WHERE ambassador_id = $1;
-END;
-$$ LANGUAGE plpgsql;
-
-
-CREATE OR REPLACE FUNCTION test_ambassador_connection()
-RETURNS text AS $$
-BEGIN
-    RETURN 'Connection to database via Ambassador API Gateway is successful.';
-END;
-$$ LANGUAGE plpgsql;
-
--------create a test environment
+--Test 7
+SELECT ambassador_id, firstname, salary FROM ambassadors;

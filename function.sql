@@ -1,17 +1,14 @@
-/*
-	
-	GROUP 7
-		RITESH JUNG SHAH
-		RUPAK DAHAL
-		DIPESH DHUNGANA
-		RAHUL AHMED SEZAN 
-
-*/
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
 
 
 SET SERVEROUTPUT ON;
 
 --PL/SQL Anonymous Block to show the initials of the ambassadors first name
+
 DECLARE
   vn_counter NUMBER := 1;
   vc_firstname VARCHAR2(20);
@@ -77,4 +74,43 @@ SHOW ERRORS;
 SELECT func_count_experiences FROM DUAL;
 --
 
-----how to test function with the use of procedure
+----how 
+CREATE OR REPLACE FUNCTION func_fullname (in_ambassador_id IN NUMBER)
+RETURN VARCHAR2
+AS
+  vc_firstname VARCHAR2(50);
+  vc_lastname VARCHAR2(50);
+  vc_fullname VARCHAR2(100);
+BEGIN
+  SELECT firstname, lastname INTO vc_firstname, vc_lastname
+  FROM ambassadors WHERE ambassador_id = in_ambassador_id;
+
+  vc_fullname := vc_firstname || ' ' || vc_lastname;
+  RETURN vc_fullname;
+END func_fullname;
+/
+SHOW ERRORS;
+
+SELECT func_fullname(2) FROM DUAL;
+
+--
+CREATE OR REPLACE FUNCTION func_lastname (in_ambassador_id IN NUMBER)
+RETURN VARCHAR2
+AS
+  vn_counter NUMBER := 1;
+  vc_lastname VARCHAR2(20);
+  vn_length NUMBER;
+BEGIN
+  SELECT lastname, LENGTH(lastname) INTO vc_lastname, vn_length 
+  FROM ambassadors WHERE ambassador_id = in_ambassador_id;
+  LOOP
+    DBMS_OUTPUT.PUT_LINE(SUBSTR(vc_lastname, vn_counter, 1));
+    vn_counter := vn_counter + 1;
+    EXIT WHEN vn_counter > vn_length;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Last Name is - '||vc_lastname);
+  RETURN vc_lastname;
+END func_lastname;
+/
+SHOW ERRORS;
+SELECT func_lastname(2) FROM DUAL;

@@ -95,15 +95,15 @@ DROP PROCEDURE PROC_d_ambassador_salary;
 DROP PROCEDURE PROC_a_b;
 
 
--- TRIGGER DROPS
-
-DROP TRIGGER trig_check_gender;
-DROP TRIGGER trig_display_a;
-
 -- FUNCTION DROPS
 DROP FUNCTION func_count_ambassadors_salary;
 DROP FUNCTION func_count_ambassadors;
 DROP FUNCTION func_count_experiences;
+DROP FUNCTION func_fullname;
+DROP FUNCTION func_lastname;
+
+
+
 
 
 

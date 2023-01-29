@@ -1,3 +1,9 @@
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
+
 SET SERVEROUTPUT ON;
 
 --procedure to update an existing ambassador's salary
@@ -46,7 +52,7 @@ END proc_username;
 EXEC proc_username(2);
 EXEC proc_username(3);
 
---Show the discounted price for the location.
+--Show the discounted price for the location Reduced 20% .
 CREATE OR REPLACE PROCEDURE proc_discounted_price(in_location_id IN NUMBER) IS
 vn_disc_price NUMBER(10,2);
 vn_price1 locations.price%TYPE;
@@ -80,4 +86,3 @@ END proc_delete_ambassador;
 /
 SHOW ERRORS
 
-EXEC proc_delete_ambassador (6);

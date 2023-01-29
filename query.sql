@@ -1,4 +1,8 @@
--- 
+	--GROUP 7
+	--	RITESH JUNG SHAH
+	--	RUPAK DAHAL
+	--	DIPESH DHUNGANA
+	--	RAHUL AHMED SEZAN 
 
 --Format the columns
 COLUMN street FORMAT A30;
