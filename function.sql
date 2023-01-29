@@ -74,7 +74,6 @@ SHOW ERRORS;
 SELECT func_count_experiences FROM DUAL;
 --
 
-----how 
 CREATE OR REPLACE FUNCTION func_fullname (in_ambassador_id IN NUMBER)
 RETURN VARCHAR2
 AS
